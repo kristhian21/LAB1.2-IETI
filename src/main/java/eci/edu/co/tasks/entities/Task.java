@@ -1,6 +1,7 @@
 package eci.edu.co.tasks.entities;
 
 import eci.edu.co.tasks.dto.Status;
+import eci.edu.co.tasks.dto.TaskDto;
 
 import java.util.Date;
 
@@ -9,12 +10,12 @@ public class Task {
     private String id;
     private String name;
     private String description;
-    private Status status;
+    private String status;
     private String assignedTo;
     private Date dueDate;
     private Date createdAt;
 
-    public Task(String id, String name, String description, Status status, String assignedTo, Date dueDate, Date createdAt) {
+    public Task(String id, String name, String description, String status, String assignedTo, Date dueDate, Date createdAt) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -48,11 +49,11 @@ public class Task {
         this.description = description;
     }
 
-    public Status getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -78,5 +79,9 @@ public class Task {
 
     public void setCreatedAt(Date createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public TaskDto toDto(){
+        return new TaskDto(id, name, description, Status.valueOf(status), assignedTo, dueDate.toString(), createdAt.toString());
     }
 }

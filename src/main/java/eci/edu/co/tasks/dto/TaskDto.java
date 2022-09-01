@@ -1,5 +1,10 @@
 package eci.edu.co.tasks.dto;
 
+import eci.edu.co.tasks.entities.Task;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+
 public class TaskDto {
 
     private String id;
@@ -74,5 +79,14 @@ public class TaskDto {
 
     public void setCreatedAt(String createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public Task toEntity(){
+        SimpleDateFormat dateFormat= new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            return new Task(id, name, description, status.name(), assignedTo, dateFormat.parse(dueDate), dateFormat.parse(createdAt));
+        }catch (ParseException e){
+            throw new RuntimeException(e);
+        }
     }
 }
