@@ -35,7 +35,6 @@ public class TaskController {
         return ResponseEntity.ok(taskService.findById(id).toDto());
     }
 
-
     @PostMapping
     public ResponseEntity<TaskDto> create( @RequestBody TaskDto taskDto ) {
         return ResponseEntity.ok(taskService.create(taskDto.toEntity()).toDto());
